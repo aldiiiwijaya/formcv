@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Form Pemesanan CV</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&display=swap');
+@keyframes frmcv-float{0%,100%{transform:translateY(0) rotate(0deg);}33%{transform:translateY(-6px) rotate(1deg);}66%{transform:translateY(-3px) rotate(-0.5deg);}}
+@keyframes frmcv-shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+@keyframes frmcv-fade-up{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+@keyframes frmcv-page-in{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+@keyframes frmcv-spin{to{transform:rotate(360deg);}}
+:root{
+--frmcv-bg:#e0e5ec;
+--frmcv-shadow-dark:#a3b1c6;
+--frmcv-shadow-light:#ffffff;
+--frmcv-primary:#4a6fa5;
+--frmcv-primary-border:#c5cdd8;
+--frmcv-text:#2d3748;
+--frmcv-text-sec:#6b7280;
+--frmcv-success:#10b981;
+--frmcv-danger:#ef4444;
+--frmcv-warning:#f59e0b;
+--frmcv-fs-h:23.5px;
+--frmcv-fs-ct:17px;
+--frmcv-fs-cd:15px;
+--frmcv-fs-sm:13px;
+--frmcv-fs-xs:11px;
+--frmcv-fs-btn:12.5px;
+}
+[data-theme="dark"]{
+--frmcv-bg:#1e2028;
+--frmcv-shadow-dark:#13151b;
+--frmcv-shadow-light:#292c38;
+--frmcv-primary:#818cf8;
+--frmcv-primary-border:#2e3147;
+--frmcv-text:#e2e8f0;
+--frmcv-text-sec:#94a3b8;
+--frmcv-success:#34d399;
+--frmcv-danger:#f87171;
+--frmcv-warning:#fbbf24;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--frmcv-bg);color:var(--frmcv-text);min-height:100vh;-webkit-font-smoothing:antialiased;touch-action:manipulation;transition:background 0.3s ease,color 0.3s ease;}
+.frmcv-wrap{max-width:900px;margin:0 auto;padding:40px 20px;opacity:0;animation:frmcv-fade-up 0.7s ease-out forwards;}
+.frmcv-card{background:var(--frmcv-bg);box-shadow:6px 6px 12px var(--frmcv-shadow-dark),-4px -4px 8px var(--frmcv-shadow-light);border-radius:24px;overflow:hidden;transition:box-shadow 0.3s ease;}
+.frmcv-progress-section{padding:20px 32px;display:flex;flex-direction:column;align-items:center;gap:12px;border-bottom:1px solid rgba(163,177,198,0.3);}
+.frmcv-progress-bar{display:flex;justify-content:space-between;align-items:center;position:relative;max-width:600px;width:100%;}
+.frmcv-progress-line{position:absolute;top:1.25rem;left:50%;width:calc(100% - 5rem);transform:translateX(-50%);height:2px;background:rgba(163,177,198,0.4);border-radius:1px;z-index:1;overflow:hidden;}
+.frmcv-progress-fill{height:100%;background:linear-gradient(90deg,var(--frmcv-primary),#7c6aed);border-radius:1px;transition:width 0.4s ease;width:0%;position:relative;}
+.frmcv-progress-fill::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);animation:frmcv-shimmer 2s infinite;}
+.frmcv-step-container{display:flex;flex-direction:column;align-items:center;z-index:2;cursor:pointer;min-width:120px;}
+.frmcv-step{width:2.5rem;height:2.5rem;border-radius:50%;background:var(--frmcv-bg);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--frmcv-fs-sm);color:var(--frmcv-text-sec);position:relative;transition:all 0.3s ease;}
+.frmcv-step.frmcv-active{background:var(--frmcv-primary);box-shadow:3px 3px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light),0 0 0 4px rgba(74,111,165,0.15);color:#fff;transform:scale(1.08);animation:frmcv-float 6s ease-in-out infinite;}
+.frmcv-step.frmcv-completed{background:var(--frmcv-success);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);color:#fff;}
+.frmcv-step.frmcv-completed::after{content:'✓';position:absolute;font-size:var(--frmcv-fs-sm);font-weight:700;}
+.frmcv-step-label{font-size:var(--frmcv-fs-xs);font-weight:500;color:var(--frmcv-text-sec);margin-top:10px;text-align:center;white-space:nowrap;}
+.frmcv-theme-row{display:flex;gap:8px;justify-content:center;}
+.frmcv-theme-btn{background:var(--frmcv-bg);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);border:none;border-radius:50px;padding:5px 14px;font-family:'Inter',sans-serif;font-size:var(--frmcv-fs-xs);font-weight:600;color:var(--frmcv-text-sec);cursor:pointer;letter-spacing:0.3px;transition:box-shadow 0.2s ease,color 0.2s ease;line-height:1.4;}
+.frmcv-theme-btn:hover{box-shadow:2px 2px 4px var(--frmcv-shadow-dark),-1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-theme-btn:active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light)!important;}
+.frmcv-theme-btn.frmcv-active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);color:var(--frmcv-primary);}
+.frmcv-content{padding:32px;}
+.frmcv-page{display:none;opacity:0;}
+.frmcv-page.frmcv-page-active{display:block;opacity:1;animation:frmcv-page-in 0.4s ease-out;}
+.frmcv-page-title{font-size:var(--frmcv-fs-h);font-weight:900;text-align:center;margin-bottom:8px;color:var(--frmcv-primary);letter-spacing:-0.5px;line-height:1.2;}
+.frmcv-page-title::after{content:'';height:1px;background:linear-gradient(90deg,transparent 0%,var(--frmcv-primary-border) 20%,var(--frmcv-primary) 50%,var(--frmcv-primary-border) 80%,transparent 100%);width:120px;margin:8px auto 0;display:block;}
+.frmcv-page-subtitle{font-size:var(--frmcv-fs-cd);color:var(--frmcv-text-sec);text-align:center;margin-bottom:28px;line-height:1.6;font-weight:400;margin-top:4px;}
+.frmcv-product-display{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:20px;padding:24px;margin-bottom:28px;text-align:center;}
+.frmcv-product-display h3{font-size:var(--frmcv-fs-sm);font-weight:600;color:var(--frmcv-text-sec);margin-bottom:16px;}
+.frmcv-product-preview{display:inline-block;max-width:200px;width:100%;border-radius:12px;overflow:hidden;box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);transition:all 0.3s ease;cursor:pointer;}
+.frmcv-product-preview img{width:100%;height:auto;display:block;}
+.frmcv-product-preview:hover{transform:translateY(-4px);box-shadow:6px 6px 12px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);}
+.frmcv-no-product{background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);border-radius:12px;padding:20px;color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);font-weight:500;max-width:300px;display:inline-block;}
+.frmcv-product-name{font-size:var(--frmcv-fs-sm);font-weight:600;color:var(--frmcv-primary);margin-top:12px;}
+.frmcv-group{margin-bottom:20px;}
+.frmcv-label{display:block;font-size:var(--frmcv-fs-sm);font-weight:500;color:var(--frmcv-text-sec);margin-bottom:6px;}
+.frmcv-required{color:var(--frmcv-danger);font-weight:700;}
+.frmcv-input,.frmcv-textarea{width:100%;background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border:none;border-radius:12px;padding:12px 16px;color:var(--frmcv-text);font-size:var(--frmcv-fs-sm);font-family:inherit;font-weight:400;transition:all 0.3s ease;outline:none;line-height:1.55;}
+.frmcv-input::placeholder,.frmcv-textarea::placeholder{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);}
+.frmcv-input:focus,.frmcv-textarea:focus{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);transform:translateY(-1px);}
+.frmcv-input[type="date"]{color-scheme:light;}
+[data-theme="dark"] .frmcv-input[type="date"]{color-scheme:dark;}
+.frmcv-textarea{resize:vertical;min-height:100px;}
+.frmcv-birth-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.frmcv-linkedin-wrap{position:relative;}
+.frmcv-linkedin-prefix{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);pointer-events:none;z-index:1;}
+.frmcv-linkedin-input{padding-left:185px!important;}
+.frmcv-radio-group{display:grid;gap:12px;margin-top:8px;}
+.frmcv-radio-option{display:flex;align-items:flex-start;padding:16px;background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);border-radius:16px;cursor:pointer;transition:all 0.3s ease;}
+.frmcv-radio-option:hover{transform:translateY(-2px);box-shadow:6px 6px 12px var(--frmcv-shadow-dark),-4px -4px 8px var(--frmcv-shadow-light);}
+.frmcv-radio-option.frmcv-selected{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);}
+.frmcv-radio-option input[type="radio"]{margin-right:12px;margin-top:2px;flex-shrink:0;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--frmcv-bg);box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);position:relative;cursor:pointer;transition:all 0.3s ease;}
+.frmcv-radio-option input[type="radio"]:checked{background:var(--frmcv-primary);box-shadow:2px 2px 4px var(--frmcv-shadow-dark),-1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-radio-option input[type="radio"]:checked::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;background:#fff;border-radius:50%;}
+.frmcv-radio-option label{margin:0;cursor:pointer;flex:1;font-weight:500;font-size:var(--frmcv-fs-sm);color:var(--frmcv-text);}
+.frmcv-radio-desc{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-xs);margin-top:2px;font-weight:400;}
+.frmcv-pkg-info{margin-top:16px;padding:20px;background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:16px;display:none;}
+.frmcv-pkg-title{color:var(--frmcv-primary);font-size:var(--frmcv-fs-ct);font-weight:700;margin-bottom:16px;}
+.frmcv-pkg-section{margin-bottom:12px;}
+.frmcv-pkg-section h5{color:var(--frmcv-text);font-size:var(--frmcv-fs-sm);font-weight:600;margin-bottom:8px;}
+.frmcv-pkg-list{list-style:none;padding:0;margin:0 0 8px 16px;}
+.frmcv-pkg-list li{margin-bottom:4px;color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);position:relative;padding-left:12px;}
+.frmcv-pkg-list li::before{content:'•';position:absolute;left:0;color:var(--frmcv-primary);font-weight:700;}
+.frmcv-pkg-estimation{background:var(--frmcv-bg);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);padding:10px 14px;border-radius:10px;color:var(--frmcv-success);font-weight:600;font-size:var(--frmcv-fs-xs);margin-top:12px;}
+.frmcv-lang-section{margin-top:8px;}
+.frmcv-lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.frmcv-lang-option,.frmcv-lang-extra{background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);border-radius:16px;padding:16px;}
+.frmcv-lang-title{font-size:var(--frmcv-fs-sm);font-weight:600;color:var(--frmcv-text);margin-bottom:12px;}
+.frmcv-lang-levels{display:flex;gap:12px;flex-wrap:wrap;}
+.frmcv-lang-levels label{display:flex;align-items:center;gap:6px;font-size:var(--frmcv-fs-sm);color:var(--frmcv-text-sec);cursor:pointer;}
+.frmcv-lang-levels input[type="radio"]{appearance:none;width:16px;height:16px;border-radius:50%;background:var(--frmcv-bg);box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);cursor:pointer;transition:all 0.3s ease;position:relative;flex-shrink:0;}
+.frmcv-lang-levels input[type="radio"]:checked{background:var(--frmcv-primary);box-shadow:2px 2px 4px var(--frmcv-shadow-dark),-1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-lang-levels input[type="radio"]:checked::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:5px;height:5px;background:#fff;border-radius:50%;}
+.frmcv-lang-extra .frmcv-label{margin-bottom:8px;}
+.frmcv-field-desc{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);padding:16px;border-radius:12px;margin-bottom:8px;border-left:3px solid var(--frmcv-primary);}
+.frmcv-desc-content{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);line-height:1.6;margin-bottom:8px;}
+.frmcv-desc-example{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-xs);font-style:italic;background:rgba(74,111,165,0.06);padding:10px;border-radius:8px;line-height:1.6;}
+.frmcv-payment{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;}
+.frmcv-payment h3{font-size:var(--frmcv-fs-ct);font-weight:700;color:var(--frmcv-primary);margin-bottom:8px;}
+.frmcv-payment-subtitle{font-size:var(--frmcv-fs-sm);color:var(--frmcv-text-sec);margin-bottom:16px;}
+.frmcv-qris{max-width:220px;width:100%;height:auto;border-radius:12px;box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);cursor:pointer;transition:all 0.3s ease;display:block;margin:0 auto;}
+.frmcv-qris:hover{transform:scale(1.04);box-shadow:6px 6px 12px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);}
+.frmcv-next-steps{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:20px;padding:24px;margin-bottom:24px;}
+.frmcv-next-steps h3{font-size:var(--frmcv-fs-ct);font-weight:700;color:var(--frmcv-success);margin-bottom:16px;text-align:center;}
+.frmcv-next-content{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);line-height:1.7;}
+.frmcv-next-content strong{color:var(--frmcv-text);font-weight:600;}
+.frmcv-next-content ul{list-style:none;margin:8px 0 8px 16px;}
+.frmcv-next-content li{position:relative;padding-left:12px;margin-bottom:4px;}
+.frmcv-next-content li::before{content:'•';position:absolute;left:0;color:var(--frmcv-success);font-weight:700;}
+.frmcv-btn-group{display:flex;gap:12px;margin-top:24px;justify-content:center;}
+.frmcv-btn{padding:7px 20px;border:none;border-radius:50px;font-size:var(--frmcv-fs-btn);font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden;transition:all 0.2s ease;text-transform:uppercase;letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;user-select:none;line-height:1.4;}
+.frmcv-btn-primary{background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);color:var(--frmcv-primary);}
+.frmcv-btn-primary:hover{box-shadow:6px 6px 12px var(--frmcv-shadow-dark),-4px -4px 8px var(--frmcv-shadow-light);transform:translateY(-2px);}
+.frmcv-btn-primary:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light)!important;transform:translateY(0)!important;}
+.frmcv-btn-secondary{background:var(--frmcv-bg);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);color:var(--frmcv-text-sec);}
+.frmcv-btn-secondary:hover{transform:translateY(-1px);}
+.frmcv-btn-secondary:active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light)!important;}
+.frmcv-btn-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+.frmcv-btn-2col .frmcv-btn{width:100%;}
+.frmcv-loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(74,111,165,0.3);border-radius:50%;border-top-color:var(--frmcv-primary);animation:frmcv-spin 1s linear infinite;}
+.frmcv-notif{position:fixed;top:20px;right:20px;background:var(--frmcv-bg);padding:12px 18px;border-radius:16px;font-size:var(--frmcv-fs-sm);font-weight:600;box-shadow:6px 6px 12px var(--frmcv-shadow-dark),-4px -4px 8px var(--frmcv-shadow-light);z-index:99999;transform:translateX(400px);transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);font-family:'Inter',sans-serif;max-width:340px;display:flex;align-items:center;gap:8px;}
+.frmcv-notif-success{color:var(--frmcv-success);}
+.frmcv-notif-error{color:var(--frmcv-danger);}
+.frmcv-notif-warning{color:var(--frmcv-warning);}
+.frmcv-notif-show{transform:translateX(0);}
+.frmcv-modal{display:none;position:fixed;z-index:10000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;}
+.frmcv-modal.frmcv-modal-show{display:flex;}
+.frmcv-modal-img-wrap{position:relative;max-width:90%;max-height:90%;}
+.frmcv-modal-img-wrap img{width:100%;height:auto;border-radius:16px;box-shadow:8px 8px 16px rgba(0,0,0,0.4);}
+.frmcv-modal-close{position:absolute;top:-44px;right:0;color:#fff;font-size:1.8rem;font-weight:700;cursor:pointer;background:rgba(0,0,0,0.4);border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;}
+.frmcv-modal-close:hover{background:rgba(0,0,0,0.7);transform:scale(1.1);}
+.frmcv-warn-modal{display:none;position:fixed;z-index:10001;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;}
+.frmcv-warn-modal.frmcv-warn-show{display:flex;}
+.frmcv-warn-box{background:var(--frmcv-bg);box-shadow:8px 8px 16px var(--frmcv-shadow-dark),-6px -6px 12px var(--frmcv-shadow-light);border-radius:24px;padding:32px;max-width:480px;width:100%;text-align:center;}
+.frmcv-warn-icon{font-size:3rem;margin-bottom:16px;}
+.frmcv-warn-title{font-size:var(--frmcv-fs-ct);font-weight:900;color:var(--frmcv-primary);margin-bottom:12px;}
+.frmcv-warn-text{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);line-height:1.7;margin-bottom:24px;}
+.frmcv-warn-btns{display:flex;gap:12px;justify-content:center;}
+.frmcv-warn-btns .frmcv-btn{flex:1;max-width:180px;}
+@media(min-width:1441px){:root{--frmcv-fs-h:23.5px;--frmcv-fs-ct:17px;--frmcv-fs-cd:15px;--frmcv-fs-sm:13.5px;--frmcv-fs-xs:11.5px;--frmcv-fs-btn:13px;}.frmcv-wrap{padding:40px 100px;}}
+@media(min-width:1025px) and (max-width:1440px){:root{--frmcv-fs-h:23.5px;--frmcv-fs-ct:17px;--frmcv-fs-cd:15px;--frmcv-fs-sm:13px;--frmcv-fs-xs:11px;--frmcv-fs-btn:12.5px;}.frmcv-wrap{padding:40px 50px;}}
+@media(max-width:1024px){:root{--frmcv-fs-h:21px;--frmcv-fs-ct:15.5px;--frmcv-fs-cd:13.5px;--frmcv-fs-sm:12px;--frmcv-fs-xs:10px;--frmcv-fs-btn:12px;}.frmcv-progress-section{padding:16px 20px;}.frmcv-content{padding:24px;}.frmcv-step{width:2.2rem;height:2.2rem;}.frmcv-wrap{padding:24px 12px;}}
+@media(max-width:768px){:root{--frmcv-fs-h:19px;--frmcv-fs-ct:15.5px;--frmcv-fs-cd:13.5px;--frmcv-fs-sm:12px;--frmcv-fs-xs:10px;--frmcv-fs-btn:11.5px;}.frmcv-wrap{padding:16px 12px;}.frmcv-progress-section{padding:14px 16px;}.frmcv-content{padding:20px 16px;}.frmcv-birth-row,.frmcv-lang-grid{grid-template-columns:1fr;gap:12px;}.frmcv-btn-group{flex-direction:column;}.frmcv-btn-group .frmcv-btn{width:100%;}.frmcv-btn-2col{gap:10px;}.frmcv-step{width:2rem;height:2rem;}.frmcv-progress-line{top:1rem;width:calc(100% - 4rem);}.frmcv-product-preview{max-width:140px;}.frmcv-qris{max-width:180px;}.frmcv-warn-btns{flex-direction:column;}.frmcv-warn-btns .frmcv-btn{max-width:none;}.frmcv-linkedin-prefix{font-size:var(--frmcv-fs-xs);}.frmcv-linkedin-input{padding-left:160px!important;}.frmcv-notif{right:12px;left:12px;max-width:none;transform:translateY(-100px);}.frmcv-notif-show{transform:translateY(0)!important;}}
+@media(max-width:480px){:root{--frmcv-fs-h:17px;--frmcv-fs-ct:14.5px;--frmcv-fs-cd:13px;--frmcv-fs-sm:11.5px;--frmcv-fs-xs:9.5px;--frmcv-fs-btn:11.5px;}.frmcv-wrap{padding:12px 10px;}.frmcv-progress-section{padding:12px;}.frmcv-content{padding:16px 12px;}.frmcv-step{width:1.8rem;height:1.8rem;}.frmcv-progress-line{top:0.9rem;width:calc(100% - 3.5rem);}.frmcv-step-container{min-width:80px;}.frmcv-step-label{font-size:9px!important;}.frmcv-product-preview{max-width:110px;}.frmcv-qris{max-width:160px;}.frmcv-linkedin-prefix{font-size:9px;left:12px;}.frmcv-linkedin-input{padding-left:125px!important;}}
+@supports(-webkit-touch-callout:none){.frmcv-input,.frmcv-textarea{font-size:16px!important;}.frmcv-linkedin-prefix{font-size:16px!important;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;}}
+</style>
+</head>
+<body>
+<div class="frmcv-wrap">
+<div class="frmcv-card">
+<div class="frmcv-progress-section">
+<div class="frmcv-progress-bar">
+<div class="frmcv-progress-line">
+<div class="frmcv-progress-fill" id="frmcvProgressFill"></div>
+</div>
+<div class="frmcv-step-container" onclick="frmcvGoStep(1)">
+<div class="frmcv-step frmcv-active" id="frmcvStep1">1</div>
+<div class="frmcv-step-label">Pilih Produk</div>
+</div>
+<div class="frmcv-step-container" onclick="frmcvGoStep(2)">
+<div class="frmcv-step" id="frmcvStep2">2</div>
+<div class="frmcv-step-label">Data Pribadi</div>
+</div>
+<div class="frmcv-step-container" onclick="frmcvGoStep(3)">
+<div class="frmcv-step" id="frmcvStep3">3</div>
+<div class="frmcv-step-label">Selesai</div>
+</div>
+</div>
+<div class="frmcv-theme-row">
+<button class="frmcv-theme-btn frmcv-active" id="frmcvThemeLight">☀ Light</button>
+<button class="frmcv-theme-btn" id="frmcvThemeDark">☾ Dark</button>
+</div>
+</div>
+<div class="frmcv-content">
+<form id="frmcvForm">
+<div class="frmcv-page frmcv-page-active" id="frmcvPage1">
+<h1 class="frmcv-page-title">Form Pemesanan CV</h1>
+<p class="frmcv-page-subtitle">Pilih desain CV yang Anda inginkan dan paket yang sesuai kebutuhan</p>
+<div class="frmcv-product-display">
+<h3>Desain yang Dipilih:</h3>
+<div class="frmcv-no-product" id="frmcvNoProduct">Tidak ada produk dipilih — Silakan kembali ke website untuk memilih produk</div>
+<div class="frmcv-product-preview" id="frmcvProductPreview" style="display:none;" onclick="frmcvOpenModal(document.getElementById('frmcvProductImg'))">
+<img id="frmcvProductImg" src="" alt="">
+</div>
+<div class="frmcv-product-name" id="frmcvProductName" style="display:none;"></div>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label">Pilih Paket <span class="frmcv-required">*</span></label>
+<div class="frmcv-radio-group">
+<div class="frmcv-radio-option" onclick="frmcvSelectPkg('basic')">
+<input type="radio" id="frmcvBasic" name="frmcv_paket" value="Paket Basic" required>
+<label for="frmcvBasic">
+<div><strong>Paket Basic</strong></div>
+<div class="frmcv-radio-desc">CV + Surat Lamaran + Berkas Pendukung</div>
+</label>
+</div>
+<div class="frmcv-radio-option" onclick="frmcvSelectPkg('premium')">
+<input type="radio" id="frmcvPremium" name="frmcv_paket" value="Paket Premium" required>
+<label for="frmcvPremium">
+<div><strong>Paket Premium</strong></div>
+<div class="frmcv-radio-desc">Semua fitur Basic + Extra benefits</div>
+</label>
+</div>
+</div>
+<div id="frmcvPkgInfo" class="frmcv-pkg-info">
+<div id="frmcvPkgDetails"></div>
+</div>
+</div>
+<div class="frmcv-btn-group">
+<button type="button" class="frmcv-btn frmcv-btn-primary" onclick="frmcvNext()">Lanjutkan <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"></polyline></svg></button>
+</div>
+</div>
+<div class="frmcv-page" id="frmcvPage2">
+<h1 class="frmcv-page-title">Data Pribadi</h1>
+<p class="frmcv-page-subtitle">Lengkapi informasi pribadi dan keahlian Anda dengan detail</p>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvNama">Nama Lengkap <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="text" id="frmcvNama" name="frmcv_nama" placeholder="Masukkan nama lengkap Anda" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvHP">Nomor Ponsel / WhatsApp <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="tel" id="frmcvHP" name="frmcv_hp" placeholder="08123456789" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvEmail">Email <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="email" id="frmcvEmail" name="frmcv_email" placeholder="nama@gmail.com" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvLinkedin">LinkedIn (Opsional)</label>
+<div class="frmcv-linkedin-wrap">
+<span class="frmcv-linkedin-prefix">https://linkedin.com/in/</span>
+<input class="frmcv-input frmcv-linkedin-input" type="text" id="frmcvLinkedin" name="frmcv_linkedin" placeholder="username">
+</div>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvSosmed">Media Sosial (Instagram/TikTok) <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="text" id="frmcvSosmed" name="frmcv_sosmed" placeholder="@username" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvPorto">Link Portofolio (Opsional)</label>
+<input class="frmcv-input" type="url" id="frmcvPorto" name="frmcv_porto" placeholder="https://portofolio-anda.com">
+</div>
+<div class="frmcv-birth-row">
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvTmptLahir">Tempat Lahir <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="text" id="frmcvTmptLahir" name="frmcv_tempat_lahir" placeholder="Jakarta" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvTglLahir">Tanggal Lahir <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="date" id="frmcvTglLahir" name="frmcv_tgl_lahir" required>
+</div>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvKota">Kota Domisili <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="text" id="frmcvKota" name="frmcv_kota" placeholder="Jakarta" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvAlamat">Alamat KTP <span class="frmcv-required">*</span></label>
+<input class="frmcv-input" type="text" id="frmcvAlamat" name="frmcv_alamat" placeholder="Alamat sesuai KTP" required>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label">Penguasaan Bahasa <span class="frmcv-required">*</span></label>
+<div class="frmcv-lang-section">
+<div class="frmcv-lang-grid">
+<div class="frmcv-lang-option">
+<div class="frmcv-lang-title">Bahasa Indonesia</div>
+<div class="frmcv-lang-levels">
+<label><input type="radio" name="frmcv_bahasa_id" value="Aktif" required> Aktif</label>
+<label><input type="radio" name="frmcv_bahasa_id" value="Pasif"> Pasif</label>
+</div>
+</div>
+<div class="frmcv-lang-option">
+<div class="frmcv-lang-title">Bahasa Inggris</div>
+<div class="frmcv-lang-levels">
+<label><input type="radio" name="frmcv_bahasa_en" value="Aktif" required> Aktif</label>
+<label><input type="radio" name="frmcv_bahasa_en" value="Pasif"> Pasif</label>
+<label><input type="radio" name="frmcv_bahasa_en" value="Tidak"> Tidak</label>
+</div>
+</div>
+</div>
+<div class="frmcv-lang-extra">
+<label class="frmcv-label" for="frmcvBahasaLain">Bahasa Lain (Opsional)</label>
+<input class="frmcv-input" type="text" id="frmcvBahasaLain" name="frmcv_bahasa_lain" placeholder="Contoh: Mandarin (Aktif), Jepang (Pasif)">
+</div>
+</div>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvDeskrip">Deskripsi Diri <span class="frmcv-required">*</span></label>
+<div class="frmcv-field-desc">
+<div class="frmcv-desc-content">Berikan informasi seperti:<br>1. Latar belakang pendidikan<br>2. Keahlian utama<br>3. Sifat atau kelebihan dalam bekerja<br>4. Tujuan Karir</div>
+<div class="frmcv-desc-example"><strong>Contoh:</strong><br>"Lulusan D3 Administrasi Perkantoran dengan pengalaman sebagai staff administrasi selama 1 tahun. Teliti, rapi, dan terbiasa bekerja dengan target. Mampu mengoperasikan Ms. Office dan Google Workspace. Tertarik berkarier di bidang administrasi dan data entry."</div>
+</div>
+<textarea class="frmcv-textarea" id="frmcvDeskrip" name="frmcv_deskrip" placeholder="Tuliskan deskripsi diri Anda..." required></textarea>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvPengalaman">Pengalaman Kerja <span class="frmcv-required">*</span></label>
+<div class="frmcv-field-desc">
+<div class="frmcv-desc-content">Format Penulisan:</div>
+<div class="frmcv-desc-example"><strong>Contoh:</strong><br>Perusahaan : PT. Indonesia Maju<br>Jabatan : Manager Marketing<br>Lama : 2018 - 2022<br>Alasan Berhenti : Mengundurkan diri untuk mencari tantangan baru</div>
+</div>
+<textarea class="frmcv-textarea" id="frmcvPengalaman" name="frmcv_pengalaman" placeholder="Tuliskan pengalaman kerja Anda sesuai format..." required></textarea>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvPendidikan">Riwayat Pendidikan <span class="frmcv-required">*</span></label>
+<div class="frmcv-field-desc">
+<div class="frmcv-desc-content">Format Penulisan:</div>
+<div class="frmcv-desc-example"><strong>Contoh:</strong><br>Nama Sekolah / Universitas : Universitas Indonesia<br>Jurusan : Sistem Informasi<br>Tahun Lulus : 2020<br>Rata-Rata Nilai / IPK (opsional) : IPK 3.75</div>
+</div>
+<textarea class="frmcv-textarea" id="frmcvPendidikan" name="frmcv_pendidikan" placeholder="Tuliskan riwayat pendidikan Anda sesuai format..." required></textarea>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvHardSkill">Hard Skill <span class="frmcv-required">*</span></label>
+<div class="frmcv-field-desc">
+<div class="frmcv-desc-content">Kemampuan teknis yang dapat dipelajari dan biasanya diajarkan di sekolah, pelatihan atau tempat kerja.</div>
+<div class="frmcv-desc-example"><strong>Contohnya:</strong><br>1. Mengoperasikan Microsoft Excel<br>2. Desain grafis dengan Canva<br>3. Mengetik cepat (60 WPM)<br>4. Programming Python<br>5. Adobe Photoshop</div>
+</div>
+<textarea class="frmcv-textarea" id="frmcvHardSkill" name="frmcv_hard_skill" placeholder="Tuliskan hard skill Anda..." required></textarea>
+</div>
+<div class="frmcv-group">
+<label class="frmcv-label" for="frmcvSoftSkill">Soft Skill <span class="frmcv-required">*</span></label>
+<div class="frmcv-field-desc">
+<div class="frmcv-desc-content">Kemampuan non-teknis yang berkaitan dengan kepribadian, sikap, dan cara berinteraksi.</div>
+<div class="frmcv-desc-example"><strong>Contohnya:</strong><br>1. Public Speaking<br>2. Manajemen Waktu<br>3. Cepat Beradaptasi<br>4. Komunikasi Efektif<br>5. Leadership</div>
+</div>
+<textarea class="frmcv-textarea" id="frmcvSoftSkill" name="frmcv_soft_skill" placeholder="Tuliskan soft skill Anda..." required></textarea>
+</div>
+<div class="frmcv-btn-2col">
+<button type="button" class="frmcv-btn frmcv-btn-secondary" onclick="frmcvPrev()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"></polyline></svg> Kembali</button>
+<button type="button" class="frmcv-btn frmcv-btn-primary" onclick="frmcvNext()">Lanjutkan <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"></polyline></svg></button>
+</div>
+</div>
+<div class="frmcv-page" id="frmcvPage3">
+<h1 class="frmcv-page-title">Pastikan data kamu sudah benar!</h1>
+<div class="frmcv-payment">
+<h3>Pembayaran via QRIS DANA</h3>
+<p class="frmcv-payment-subtitle">CV kamu akan diproses setelah melakukan pembayaran</p>
+<img src="https://raw.githubusercontent.com/aldiiiwijaya/Desain-CV/main/QRIS.jpg" alt="QRIS DANA" class="frmcv-qris" onclick="frmcvOpenModal(this)">
+</div>
+<div class="frmcv-next-steps">
+<h3>Untuk mempercepat proses pengerjaan, silakan lakukan langkah berikut:</h3>
+<div class="frmcv-next-content">
+<strong>1. Konfirmasi via WhatsApp</strong><br>Kirim pesan konfirmasi: "Halo Kak, saya sudah mengisi form pemesanan CV"<br><br>
+<strong>2. Kirim Bukti Pembayaran</strong><br>Kirimkan bukti pembayaran di WhatsApp sesuai dengan paket yang dipilih<br><br>
+<strong>3. Kirim Dokumen Pendukung</strong><br>Kirimkan dokumen yang akan dilampirkan melalui WhatsApp, seperti:<ul><li>Ijazah / Sertifikat pendidikan</li><li>SKCK (jika diperlukan)</li><li>Pas foto formal</li><li>Tanda Tangan (di atas kertas polos)</li><li>Dokumen pendukung (max 5)</li></ul>
+</div>
+</div>
+<div class="frmcv-btn-2col">
+<button type="button" class="frmcv-btn frmcv-btn-secondary" onclick="frmcvPrev()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"></polyline></svg> Kembali</button>
+<button type="button" class="frmcv-btn frmcv-btn-primary" id="frmcvSubmitBtn" onclick="frmcvSubmit()">
+<span id="frmcvBtnText">Kirim Pesanan</span>
+<span id="frmcvBtnLoad" style="display:none;" class="frmcv-loading"></span>
+</button>
+</div>
+</div>
+<input type="hidden" id="frmcvProdukHidden" name="frmcv_produk" value="">
+</form>
+</div>
+</div>
+</div>
+<div id="frmcvImgModal" class="frmcv-modal">
+<div class="frmcv-modal-img-wrap">
+<span class="frmcv-modal-close" onclick="frmcvCloseModal()">&times;</span>
+<img id="frmcvModalImg" src="" alt="">
+</div>
+</div>
+<div id="frmcvWarnModal" class="frmcv-warn-modal">
+<div class="frmcv-warn-box">
+<div class="frmcv-warn-icon">📧</div>
+<h3 class="frmcv-warn-title">Wajib Kirim Isi Form ke WhatsApp</h3>
+<p class="frmcv-warn-text"><strong>Penting!</strong> Untuk melanjutkan proses pemesanan CV, Anda <strong>wajib mengirim isi formulir ini ke WhatsApp</strong> kami.<br><br>Klik tombol "Lanjut" untuk membuka WhatsApp dan mengirim data formulir Anda secara otomatis.<br><br><em>Tanpa mengirim formulir ke WhatsApp, pemesanan CV Anda tidak akan diproses.</em></p>
+<div class="frmcv-warn-btns">
+<button class="frmcv-btn frmcv-btn-secondary" onclick="frmcvCloseWarn()">Batal</button>
+<button class="frmcv-btn frmcv-btn-primary" onclick="frmcvProceedWA()">Lanjut ke WhatsApp <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13L2 9L22 2Z"></path></svg></button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var frmcvCurPage=1;
+var frmcvTotalPages=3;
+var frmcvSubmitting=false;
+var frmcvDataToSend=null;
+var frmcvProducts={
+'ats-1':{name:'ATS 1',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/ats-1.webp'},
+'ats-2':{name:'ATS 2',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/ats-2.webp'},
+'ats-3':{name:'ATS 3',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/ats-3.webp'},
+'crv-1':{name:'CRV 1',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/crv-1.webp'},
+'crv-2':{name:'CRV 2',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/crv-2.webp'},
+'crv-3':{name:'CRV 3',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/crv-3.webp'},
+'crv-4':{name:'CRV 4',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/crv-4.webp'}
+};
+var frmcvPackages={
+basic:{title:'Paket Basic : Rp.50.000',sections:[{title:'1 file PDF berisi:',items:['CV profesional','Surat Lamaran kerja','Berkas Pendukung lainnya']}],estimation:'⏱️ Estimasi pengerjaan: 1–2 hari kerja'},
+premium:{title:'Paket Premium : Rp.100.000',sections:[{title:'1 file PDF berisi:',items:['CV profesional','Surat Lamaran kerja','Berkas Pendukung lainnya']},{title:'Tambahan:',items:['1 file JPG (CV)','Free konsultasi via chat','Kompres 5 file PDF & 5 file JPG','Template email lamaran kerja','Folder Google Drive pribadi','3 foto headshot formal dengan AI']}],estimation:'⏱️ Estimasi pengerjaan: 1–2 hari kerja'}
+};
+var frmcvLsGet=function(k){try{return localStorage.getItem(k);}catch(e){return null;}};
+var frmcvLsSet=function(k,v){try{localStorage.setItem(k,v);}catch(e){}};
+var frmcvApplyTheme=function(t){
+document.documentElement.setAttribute('data-theme',t);
+document.body.setAttribute('data-theme',t);
+var bl=document.getElementById('frmcvThemeLight');
+var bd=document.getElementById('frmcvThemeDark');
+if(bl&&bd){bl.classList.toggle('frmcv-active',t==='light');bd.classList.toggle('frmcv-active',t==='dark');}
+frmcvLsSet('frmcv-theme',t);
+};
+var frmcvSaved=frmcvLsGet('frmcv-theme')||'light';
+frmcvApplyTheme(frmcvSaved);
+document.getElementById('frmcvThemeLight').addEventListener('click',function(){frmcvApplyTheme('light');});
+document.getElementById('frmcvThemeDark').addEventListener('click',function(){frmcvApplyTheme('dark');});
+function frmcvIsMobile(){return /Android|webOS|iPhone|iPad|IEMobile|Opera Mini/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}
+function frmcvIsIOS(){return /iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}
+window.frmcvSelectPkg=function(type){
+var radio=document.getElementById(type==='basic'?'frmcvBasic':'frmcvPremium');
+if(!radio)return;
+radio.checked=true;
+document.querySelectorAll('.frmcv-radio-option').forEach(function(o){o.classList.remove('frmcv-selected');});
+var par=radio.closest('.frmcv-radio-option');
+if(par)par.classList.add('frmcv-selected');
+var info=document.getElementById('frmcvPkgInfo');
+var details=document.getElementById('frmcvPkgDetails');
+var pkg=frmcvPackages[type];
+if(!pkg||!info||!details)return;
+var html='<div class="frmcv-pkg-title">'+pkg.title+'</div>';
+pkg.sections.forEach(function(s){html+='<div class="frmcv-pkg-section"><h5>✔ '+s.title+'</h5><ul class="frmcv-pkg-list">'+s.items.map(function(i){return'<li>'+i+'</li>';}).join('')+'</ul></div>';});
+if(pkg.estimation)html+='<div class="frmcv-pkg-estimation">'+pkg.estimation+'</div>';
+details.innerHTML=html;
+info.style.display='block';
+};
+window.frmcvNext=function(){if(frmcvCurPage<frmcvTotalPages&&frmcvValidatePage()){frmcvCurPage++;frmcvUpdateUI();frmcvScrollTop();}};
+window.frmcvPrev=function(){if(frmcvCurPage>1){frmcvCurPage--;frmcvUpdateUI();frmcvScrollTop();}};
+window.frmcvGoStep=function(step){
+if(step===frmcvCurPage)return;
+if(step<frmcvCurPage){frmcvCurPage=step;frmcvUpdateUI();frmcvScrollTop();}
+else if(frmcvValidatePage()){frmcvCurPage=step;frmcvUpdateUI();frmcvScrollTop();}
+};
+function frmcvUpdateUI(){
+document.querySelectorAll('.frmcv-page').forEach(function(p){p.classList.remove('frmcv-page-active');});
+var pg=document.getElementById('frmcvPage'+frmcvCurPage);
+if(pg)pg.classList.add('frmcv-page-active');
+for(var i=1;i<=frmcvTotalPages;i++){
+var s=document.getElementById('frmcvStep'+i);
+if(!s)continue;
+s.classList.remove('frmcv-active','frmcv-completed');
+if(i===frmcvCurPage){s.classList.add('frmcv-active');s.textContent=i;}
+else if(i<frmcvCurPage){s.classList.add('frmcv-completed');s.textContent='';}
+else{s.textContent=i;}
+}
+var fill=document.getElementById('frmcvProgressFill');
+if(fill)fill.style.width=((frmcvCurPage-1)/(frmcvTotalPages-1)*100)+'%';
+}
+function frmcvValidatePage(){
+var pg=document.getElementById('frmcvPage'+frmcvCurPage);
+if(!pg)return false;
+var fields=pg.querySelectorAll('[required]');
+var valid=true;
+var first=null;
+for(var i=0;i<fields.length;i++){
+var f=fields[i];
+if(f.type==='radio'){
+var group=pg.querySelectorAll('[name="'+f.name+'"]');
+var checked=Array.from(group).some(function(r){return r.checked;});
+if(!checked){valid=false;if(!first)first=f;}
+}else if(!f.value||!f.value.trim()){
+valid=false;if(!first)first=f;
+}else if(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)){
+valid=false;if(!first)first=f;
+}else if(f.type==='url'&&f.value&&!/^https?:\/\/.+/.test(f.value)){
+valid=false;if(!first)first=f;
+}
+}
+if(!valid){
+if(first){first.focus();first.scrollIntoView({behavior:'smooth',block:'center'});}
+frmcvShowNotif('Mohon lengkapi semua field yang wajib diisi dengan benar','error');
+}
+return valid;
+}
+function frmcvScrollTop(){window.scrollTo({top:0,behavior:'smooth'});}
+function frmcvShowNotif(msg,type){
+document.querySelectorAll('.frmcv-notif').forEach(function(n){n.remove();});
+var n=document.createElement('div');
+n.className='frmcv-notif frmcv-notif-'+type;
+var icons={success:'✅',error:'❌',warning:'⚠️'};
+n.innerHTML=(icons[type]||'ℹ️')+' '+msg;
+document.body.appendChild(n);
+setTimeout(function(){n.classList.add('frmcv-notif-show');},10);
+setTimeout(function(){n.classList.remove('frmcv-notif-show');setTimeout(function(){if(n.parentNode)n.parentNode.removeChild(n);},400);},4000);
+}
+window.frmcvOpenModal=function(img){
+if(!img||!img.src)return;
+var modal=document.getElementById('frmcvImgModal');
+var mi=document.getElementById('frmcvModalImg');
+mi.src=img.src;
+mi.alt=img.alt||'';
+modal.classList.add('frmcv-modal-show');
+document.body.style.overflow='hidden';
+};
+window.frmcvCloseModal=function(){
+document.getElementById('frmcvImgModal').classList.remove('frmcv-modal-show');
+document.body.style.overflow='';
+setTimeout(function(){document.getElementById('frmcvModalImg').src='';},300);
+};
+document.getElementById('frmcvImgModal').addEventListener('click',function(e){if(e.target===this)frmcvCloseModal();});
+window.frmcvCloseWarn=function(){
+document.getElementById('frmcvWarnModal').classList.remove('frmcv-warn-show');
+document.body.style.overflow='';
+frmcvResetBtn();
+};
+window.frmcvProceedWA=function(){
+frmcvCloseWarn();
+if(frmcvDataToSend)setTimeout(function(){frmcvSendWA(frmcvDataToSend);},300);
+};
+document.getElementById('frmcvWarnModal').addEventListener('click',function(e){if(e.target===this)frmcvCloseWarn();});
+function frmcvResetBtn(){
+frmcvSubmitting=false;
+var bt=document.getElementById('frmcvBtnText');
+var bl=document.getElementById('frmcvBtnLoad');
+var sb=document.getElementById('frmcvSubmitBtn');
+if(bt)bt.style.display='';
+if(bl)bl.style.display='none';
+if(sb)sb.disabled=false;
+}
+function frmcvCollectData(){
+var d={};
+d.nama=(document.getElementById('frmcvNama')||{}).value||'';d.nama=d.nama.trim();
+d.email=(document.getElementById('frmcvEmail')||{}).value||'';d.email=d.email.trim();
+d.hp=(document.getElementById('frmcvHP')||{}).value||'';d.hp=d.hp.trim();
+d.desain=(document.getElementById('frmcvProdukHidden')||{}).value||'';
+d.paket='';var pk=document.querySelector('input[name="frmcv_paket"]:checked');if(pk)d.paket=pk.value;
+var li=(document.getElementById('frmcvLinkedin')||{}).value||'';li=li.trim();
+d.linkedin=li?'https://linkedin.com/in/'+li:'Tidak diisi';
+d.sosmed=(document.getElementById('frmcvSosmed')||{}).value||'';d.sosmed=d.sosmed.trim();
+d.porto=(document.getElementById('frmcvPorto')||{}).value||'';d.porto=d.porto.trim()||'Tidak diisi';
+d.tempat_lahir=(document.getElementById('frmcvTmptLahir')||{}).value||'';d.tempat_lahir=d.tempat_lahir.trim();
+d.tgl_lahir=(document.getElementById('frmcvTglLahir')||{}).value||'';
+d.kota=(document.getElementById('frmcvKota')||{}).value||'';d.kota=d.kota.trim();
+d.alamat=(document.getElementById('frmcvAlamat')||{}).value||'';d.alamat=d.alamat.trim();
+d.bahasa_id='';var bi=document.querySelector('input[name="frmcv_bahasa_id"]:checked');if(bi)d.bahasa_id=bi.value;
+d.bahasa_en='';var be=document.querySelector('input[name="frmcv_bahasa_en"]:checked');if(be)d.bahasa_en=be.value;
+d.bahasa_lain=(document.getElementById('frmcvBahasaLain')||{}).value||'';d.bahasa_lain=d.bahasa_lain.trim()||'Tidak ada';
+d.deskrip=(document.getElementById('frmcvDeskrip')||{}).value||'';d.deskrip=d.deskrip.trim();
+d.pengalaman=(document.getElementById('frmcvPengalaman')||{}).value||'';d.pengalaman=d.pengalaman.trim();
+d.pendidikan=(document.getElementById('frmcvPendidikan')||{}).value||'';d.pendidikan=d.pendidikan.trim();
+d.hard_skill=(document.getElementById('frmcvHardSkill')||{}).value||'';d.hard_skill=d.hard_skill.trim();
+d.soft_skill=(document.getElementById('frmcvSoftSkill')||{}).value||'';d.soft_skill=d.soft_skill.trim();
+return d;
+}
+window.frmcvSubmit=function(){
+if(frmcvSubmitting){frmcvShowNotif('Form sedang diproses, mohon tunggu...','warning');return;}
+if(!frmcvValidatePage())return;
+frmcvSubmitting=true;
+var bt=document.getElementById('frmcvBtnText');
+var bl=document.getElementById('frmcvBtnLoad');
+var sb=document.getElementById('frmcvSubmitBtn');
+if(bt)bt.style.display='none';
+if(bl)bl.style.display='inline-block';
+if(sb)sb.disabled=true;
+frmcvDataToSend=frmcvCollectData();
+frmcvShowNotif('Data formulir telah dikumpulkan','success');
+setTimeout(function(){
+document.getElementById('frmcvWarnModal').classList.add('frmcv-warn-show');
+document.body.style.overflow='hidden';
+},1000);
+};
+function frmcvBuildMsg(d){
+return encodeURIComponent('Halo Kak,\nSaya sudah mengisi form pemesanan CV.\n\n*PAKET & DESAIN*\n• Paket : '+d.paket+'\n• Desain CV : '+d.desain+'\n\n*DATA PRIBADI*\n• Nama : '+d.nama+'\n• Email : '+d.email+'\n• No. HP/WA : '+d.hp+'\n• LinkedIn : '+d.linkedin+'\n• Media Sosial : '+d.sosmed+'\n• Portofolio : '+d.porto+'\n\n*DATA TEMPAT & TANGGAL*\n• Tempat Lahir : '+d.tempat_lahir+'\n• Tanggal Lahir : '+d.tgl_lahir+'\n• Kota Domisili : '+d.kota+'\n• Alamat KTP : '+d.alamat+'\n\n*PENGUASAAN BAHASA*\n• Bahasa Indonesia : '+d.bahasa_id+'\n• Bahasa Inggris : '+d.bahasa_en+'\n• Bahasa Lain : '+d.bahasa_lain+'\n\n*DESKRIPSI DIRI*\n'+d.deskrip+'\n\n*PENGALAMAN KERJA*\n'+d.pengalaman+'\n\n*RIWAYAT PENDIDIKAN*\n'+d.pendidikan+'\n\n*HARD SKILL*\n'+d.hard_skill+'\n\n*SOFT SKILL*\n'+d.soft_skill+'\n\nSaya akan segera kirimkan bukti pembayaran dan dokumen pendukung. Terima kasih!');
+}
+function frmcvSendWA(d){
+var no='6285717770277';
+var msg=frmcvBuildMsg(d);
+var urlWeb='https://wa.me/'+no+'?text='+msg;
+var urlApp='whatsapp://send?phone='+no+'&text='+msg;
+try{
+if(frmcvIsMobile()){window.location.href=urlApp;setTimeout(function(){window.location.href=urlWeb;},1200);}
+else{var w=window.open(urlWeb,'_blank');if(!w)window.location.href=urlWeb;}
+frmcvShowNotif('Berhasil membuka WhatsApp! Silakan kirim pesan tersebut.','success');
+}catch(e){
+frmcvShowNotif('Gagal membuka WhatsApp. Hubungi langsung: +'+no,'error');
+}finally{frmcvResetBtn();}
+}
+function frmcvInitProduct(){
+try{
+var params=new URLSearchParams(window.location.search);
+var key=(params.get('product')||'').toLowerCase();
+var prod=frmcvProducts[key];
+if(prod){
+document.getElementById('frmcvNoProduct').style.display='none';
+var preview=document.getElementById('frmcvProductPreview');
+var img=document.getElementById('frmcvProductImg');
+var name=document.getElementById('frmcvProductName');
+var hidden=document.getElementById('frmcvProdukHidden');
+img.src=prod.image;
+img.alt=prod.name;
+preview.style.display='inline-block';
+if(name){name.textContent=prod.name;name.style.display='block';}
+if(hidden)hidden.value=prod.name;
+}
+}catch(e){}
+}
+function frmcvInitDate(){
+var el=document.getElementById('frmcvTglLahir');
+if(!el)return;
+el.setAttribute('max',new Date().toISOString().split('T')[0]);
+var min=new Date();min.setFullYear(min.getFullYear()-100);
+el.setAttribute('min',min.toISOString().split('T')[0]);
+}
+function frmcvInitLinkedin(){
+var el=document.getElementById('frmcvLinkedin');
+if(!el)return;
+el.addEventListener('input',function(){
+if(this.value.startsWith('https://linkedin.com/in/'))this.value=this.value.replace('https://linkedin.com/in/','');
+if(this.value.startsWith('linkedin.com/in/'))this.value=this.value.replace('linkedin.com/in/','');
+});
+}
+function frmcvInitIOS(){
+if(!frmcvIsIOS())return;
+var vp=document.querySelector('meta[name="viewport"]');
+if(vp)vp.setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+document.querySelectorAll('input,textarea').forEach(function(el){el.style.fontSize='16px';});
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){frmcvCloseModal();frmcvCloseWarn();}});
+window.addEventListener('online',function(){frmcvShowNotif('Koneksi internet tersambung kembali','success');});
+window.addEventListener('offline',function(){frmcvShowNotif('Koneksi internet terputus','error');});
+document.addEventListener('DOMContentLoaded',function(){
+frmcvInitProduct();
+frmcvInitDate();
+frmcvInitLinkedin();
+frmcvInitIOS();
+frmcvUpdateUI();
+});
+})();
+</script>
+</body>
+</html>
