@@ -60,8 +60,8 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 .frmcv-theme-row{display:flex;gap:8px;justify-content:center;}
 .frmcv-theme-btn{background:var(--frmcv-bg);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);border:none;border-radius:50px;padding:5px 14px;font-family:'Inter',sans-serif;font-size:var(--frmcv-fs-xs);font-weight:600;color:var(--frmcv-text-sec);cursor:pointer;letter-spacing:0.3px;transition:box-shadow 0.2s ease,color 0.2s ease;line-height:1.4;}
 .frmcv-theme-btn:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
-.frmcv-theme-btn:active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light)!important;}
-.frmcv-theme-btn.frmcv-active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);color:var(--frmcv-primary);}
+.frmcv-theme-btn:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
+.frmcv-theme-btn.frmcv-active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);color:var(--frmcv-primary);}
 .frmcv-content{padding:32px;}
 .frmcv-page{display:none;opacity:0;}
 .frmcv-page.frmcv-page-active{display:block;opacity:1;animation:frmcv-page-in 0.4s ease-out;}
@@ -69,9 +69,10 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 .frmcv-page-subtitle{font-size:var(--frmcv-fs-cd);color:var(--frmcv-text-sec);text-align:center;margin-bottom:28px;line-height:1.5;font-weight:400;margin-top:1px;}
 .frmcv-product-display{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:20px;padding:24px;margin-bottom:28px;text-align:center;}
 .frmcv-product-display h3{font-size:var(--frmcv-fs-sm);font-weight:600;color:var(--frmcv-text-sec);margin-bottom:16px;}
-.frmcv-product-preview{display:inline-block;max-width:200px;width:100%;border-radius:12px;overflow:hidden;box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);transition:all 0.3s ease;cursor:pointer;}
+.frmcv-product-preview{display:inline-block;max-width:200px;width:100%;border-radius:12px;overflow:hidden;box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);transition:box-shadow 0.2s ease;cursor:pointer;}
 .frmcv-product-preview img{width:100%;height:auto;display:block;}
-.frmcv-product-preview:hover{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);}
+.frmcv-product-preview:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-product-preview:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-no-product{background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);border-radius:12px;padding:20px;color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);font-weight:500;max-width:300px;display:inline-block;}
 .frmcv-product-name{font-size:var(--frmcv-fs-sm);font-weight:600;color:var(--frmcv-primary);margin-top:12px;}
 .frmcv-group{margin-bottom:20px;}
@@ -88,10 +89,10 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 .frmcv-linkedin-prefix{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);pointer-events:none;z-index:1;}
 .frmcv-linkedin-input{padding-left:185px!important;}
 .frmcv-radio-group{display:grid;gap:12px;margin-top:8px;}
-.frmcv-radio-option{display:flex;align-items:flex-start;padding:16px;background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);border-radius:16px;cursor:pointer;transition:all 0.2s ease;}
+.frmcv-radio-option{display:flex;align-items:flex-start;padding:16px;background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);border-radius:16px;cursor:pointer;transition:box-shadow 0.2s ease;}
 .frmcv-radio-option:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
-.frmcv-radio-option:active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);}
-.frmcv-radio-option.frmcv-selected{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);}
+.frmcv-radio-option:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
+.frmcv-radio-option.frmcv-selected{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-radio-option input[type="radio"]{margin-right:12px;margin-top:2px;flex-shrink:0;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--frmcv-bg);box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);position:relative;cursor:pointer;transition:all 0.3s ease;}
 .frmcv-radio-option input[type="radio"]:checked{background:var(--frmcv-primary);box-shadow:2px 2px 4px var(--frmcv-shadow-dark),-1px -1px 3px var(--frmcv-shadow-light);}
 .frmcv-radio-option input[type="radio"]:checked::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;background:#fff;border-radius:50%;}
@@ -131,18 +132,17 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 .frmcv-group-card .frmcv-group:last-child{margin-bottom:0;}
 .frmcv-group-card .frmcv-birth-row{margin-bottom:0;}
 .frmcv-group-card .frmcv-cert-toggle{margin-top:10px;}
-.frmcv-desc-content{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);line-height:1.6;margin-bottom:8px;}
 .frmcv-desc-example{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);font-style:italic;background:rgba(74,111,165,0.06);padding:10px;border-radius:8px;line-height:1.6;border-left:1px solid rgba(74,111,165,0.25);}
 .frmcv-example-wrap{overflow:hidden;max-height:0;transition:max-height 0.35s ease,opacity 0.3s ease;opacity:0;margin-top:8px;}
 .frmcv-example-wrap.frmcv-ex-open{max-height:600px;opacity:1;}
 .frmcv-ex-btn{display:inline-flex;align-items:center;gap:5px;background:var(--frmcv-bg);box-shadow:2px 2px 5px var(--frmcv-shadow-dark),-1px -1px 4px var(--frmcv-shadow-light);border:none;border-radius:8px;font-family:inherit;font-size:var(--frmcv-fs-xs);font-weight:600;color:var(--frmcv-primary);cursor:pointer;padding:5px 12px;transition:box-shadow 0.2s ease;}
-.frmcv-ex-btn:hover{box-shadow:inset 1px 1px 3px var(--frmcv-shadow-dark),inset -1px -1px 2px var(--frmcv-shadow-light);}
-.frmcv-ex-btn:active{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-ex-btn:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-ex-btn:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-ex-btn svg{transition:transform 0.3s ease;flex-shrink:0;}
 .frmcv-ex-btn.frmcv-ex-open svg{transform:rotate(180deg);}
-.frmcv-cert-toggle{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);border-radius:16px;cursor:pointer;margin-bottom:12px;transition:all 0.2s ease;user-select:none;}
+.frmcv-cert-toggle{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);border-radius:16px;cursor:pointer;margin-bottom:12px;transition:box-shadow 0.2s ease;user-select:none;}
 .frmcv-cert-toggle:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
-.frmcv-cert-toggle:active{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);}
+.frmcv-cert-toggle:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-cert-toggle-icon{width:36px;height:20px;border-radius:20px;background:var(--frmcv-bg);box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);position:relative;flex-shrink:0;transition:all 0.3s ease;}
 .frmcv-cert-toggle-icon::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--frmcv-text-sec);box-shadow:1px 1px 3px var(--frmcv-shadow-dark);transition:all 0.3s ease;}
 .frmcv-cert-toggle.frmcv-cert-on .frmcv-cert-toggle-icon{background:var(--frmcv-primary);box-shadow:2px 2px 4px var(--frmcv-shadow-dark),-1px -1px 3px var(--frmcv-shadow-light);}
@@ -155,8 +155,9 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 .frmcv-payment{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;}
 .frmcv-payment h3{font-size:var(--frmcv-fs-ct);font-weight:700;color:var(--frmcv-primary);margin-bottom:8px;}
 .frmcv-payment-subtitle{font-size:var(--frmcv-fs-sm);color:var(--frmcv-text-sec);margin-bottom:16px;}
-.frmcv-qris{max-width:220px;width:100%;height:auto;border-radius:12px;box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);cursor:pointer;transition:all 0.3s ease;display:block;margin:0 auto;}
-.frmcv-qris:hover{box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);}
+.frmcv-qris{max-width:220px;width:100%;height:auto;border-radius:12px;box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);cursor:pointer;transition:box-shadow 0.2s ease;display:block;margin:0 auto;}
+.frmcv-qris:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
+.frmcv-qris:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-next-steps{background:var(--frmcv-bg);box-shadow:inset 3px 3px 6px var(--frmcv-shadow-dark),inset -2px -2px 4px var(--frmcv-shadow-light);border-radius:20px;padding:24px;margin-bottom:24px;}
 .frmcv-next-steps h3{font-size:var(--frmcv-fs-ct);font-weight:700;color:var(--frmcv-success);margin-bottom:16px;text-align:center;}
 .frmcv-next-content{color:var(--frmcv-text-sec);font-size:var(--frmcv-fs-sm);line-height:1.7;}
@@ -165,13 +166,13 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 .frmcv-next-content li{position:relative;padding-left:12px;margin-bottom:4px;}
 .frmcv-next-content li::before{content:'•';position:absolute;left:0;color:var(--frmcv-success);font-weight:700;}
 .frmcv-btn-group{display:flex;gap:12px;margin-top:24px;justify-content:center;}
-.frmcv-btn{padding:7px 20px;border:none;border-radius:50px;font-size:var(--frmcv-fs-btn);font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden;transition:all 0.2s ease;text-transform:uppercase;letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;user-select:none;line-height:1.4;}
+.frmcv-btn{padding:7px 20px;border:none;border-radius:50px;font-size:var(--frmcv-fs-btn);font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden;transition:box-shadow 0.2s ease;text-transform:uppercase;letter-spacing:0.5px;-webkit-tap-highlight-color:transparent;user-select:none;line-height:1.4;}
 .frmcv-btn-primary{background:var(--frmcv-bg);box-shadow:4px 4px 8px var(--frmcv-shadow-dark),-3px -3px 6px var(--frmcv-shadow-light);color:var(--frmcv-primary);}
 .frmcv-btn-primary:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
-.frmcv-btn-primary:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light)!important;}
+.frmcv-btn-primary:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-btn-secondary{background:var(--frmcv-bg);box-shadow:3px 3px 6px var(--frmcv-shadow-dark),-2px -2px 4px var(--frmcv-shadow-light);color:var(--frmcv-text-sec);}
 .frmcv-btn-secondary:hover{box-shadow:inset 2px 2px 4px var(--frmcv-shadow-dark),inset -1px -1px 3px var(--frmcv-shadow-light);}
-.frmcv-btn-secondary:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light)!important;}
+.frmcv-btn-secondary:active{box-shadow:inset 4px 4px 8px var(--frmcv-shadow-dark),inset -3px -3px 6px var(--frmcv-shadow-light);}
 .frmcv-btn-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
 .frmcv-btn-2col .frmcv-btn{width:100%;}
 .frmcv-loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(74,111,165,0.3);border-radius:50%;border-top-color:var(--frmcv-primary);animation:frmcv-spin 1s linear infinite;}
@@ -348,22 +349,22 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 </div>
 <div class="frmcv-group-card">
 <label class="frmcv-label" for="frmcvDeskrip">Deskripsi Diri <span class="frmcv-required">*</span></label>
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx1')" id="frmcvEx1Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx1"><div class="frmcv-desc-content" style="margin-top:8px;">Berikan informasi seperti:<br>1. Latar belakang pendidikan<br>2. Keahlian utama<br>3. Sifat atau kelebihan dalam bekerja<br>4. Tujuan Karir</div><div class="frmcv-desc-example"><strong>Contoh:</strong><br>"Lulusan D3 Administrasi Perkantoran dengan pengalaman sebagai staff administrasi selama 1 tahun. Teliti, rapi, dan terbiasa bekerja dengan target. Mampu mengoperasikan Ms. Office dan Google Workspace. Tertarik berkarier di bidang administrasi dan data entry."</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx1')" id="frmcvEx1Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx1"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>"Lulusan D3 Administrasi Perkantoran dengan pengalaman sebagai staff administrasi selama 1 tahun. Teliti, rapi, dan terbiasa bekerja dengan target. Mampu mengoperasikan Ms. Office dan Google Workspace. Tertarik berkarier di bidang administrasi dan data entry."</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvDeskrip" name="frmcv_deskrip" placeholder="Tuliskan deskripsi diri Anda..." required></textarea>
 </div>
 <div class="frmcv-group-card">
 <label class="frmcv-label" for="frmcvPendidikan">Riwayat Pendidikan <span class="frmcv-required">*</span></label>
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx3')" id="frmcvEx3Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx3"><div class="frmcv-desc-content" style="margin-top:8px;">Format Penulisan:</div><div class="frmcv-desc-example"><strong>Contoh:</strong><br>Nama Sekolah / Universitas : Universitas Indonesia<br>Jurusan : Sistem Informasi<br>Tahun Lulus : 2020<br>Rata-Rata Nilai / IPK (opsional) : IPK 3.75</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx3')" id="frmcvEx3Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx3"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>Nama Sekolah / Universitas : Universitas Indonesia<br>Jurusan : Sistem Informasi<br>Tahun Lulus : 2020<br>Rata-Rata Nilai / IPK (opsional) : IPK 3.75</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvPendidikan" name="frmcv_pendidikan" placeholder="Tuliskan riwayat pendidikan Anda sesuai format..." required></textarea>
 </div>
 <div class="frmcv-group-card">
 <label class="frmcv-label" for="frmcvHardSkill">Hard Skill <span class="frmcv-required">*</span></label>
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx4')" id="frmcvEx4Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx4"><div class="frmcv-desc-content" style="margin-top:8px;">Kemampuan teknis yang dapat dipelajari dan biasanya diajarkan di sekolah, pelatihan atau tempat kerja.</div><div class="frmcv-desc-example"><strong>Contohnya:</strong><br>1. Mengoperasikan Microsoft Excel<br>2. Desain grafis dengan Canva<br>3. Mengetik cepat (60 WPM)<br>4. Programming Python<br>5. Adobe Photoshop</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx4')" id="frmcvEx4Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx4"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>1. Mengoperasikan Microsoft Excel<br>2. Desain grafis dengan Canva<br>3. Mengetik cepat (60 WPM)<br>4. Programming Python<br>5. Adobe Photoshop</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvHardSkill" name="frmcv_hard_skill" placeholder="Tuliskan hard skill Anda..." required></textarea>
 </div>
 <div class="frmcv-group-card">
 <label class="frmcv-label" for="frmcvSoftSkill">Soft Skill <span class="frmcv-required">*</span></label>
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx5')" id="frmcvEx5Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx5"><div class="frmcv-desc-content" style="margin-top:8px;">Kemampuan non-teknis yang berkaitan dengan kepribadian, sikap, dan cara berinteraksi.</div><div class="frmcv-desc-example"><strong>Contohnya:</strong><br>1. Public Speaking<br>2. Manajemen Waktu<br>3. Cepat Beradaptasi<br>4. Komunikasi Efektif<br>5. Leadership</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx5')" id="frmcvEx5Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx5"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>1. Public Speaking<br>2. Manajemen Waktu<br>3. Cepat Beradaptasi<br>4. Komunikasi Efektif<br>5. Leadership</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvSoftSkill" name="frmcv_soft_skill" placeholder="Tuliskan soft skill Anda..." required></textarea>
 </div>
 <div class="frmcv-group-card">
@@ -374,7 +375,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 <span class="frmcv-cert-badge" id="frmcvPengalamanBadge" style="display:none;">Diisi</span>
 </div>
 <div class="frmcv-cert-body" id="frmcvPengalamanBody">
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx2')" id="frmcvEx2Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx2"><div class="frmcv-desc-content" style="margin-top:8px;">Format Penulisan:</div><div class="frmcv-desc-example"><strong>Contoh:</strong><br>Perusahaan : PT. Indonesia Maju<br>Jabatan : Manager Marketing<br>Lama : 2018 - 2022<br>Alasan Berhenti : Mengundurkan diri untuk mencari tantangan baru</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx2')" id="frmcvEx2Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx2"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>Perusahaan : PT. Indonesia Maju<br>Jabatan : Manager Marketing<br>Lama : 2018 - 2022<br>Alasan Berhenti : Mengundurkan diri untuk mencari tantangan baru</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvPengalaman" name="frmcv_pengalaman" placeholder="Tuliskan pengalaman kerja Anda sesuai format..." style="min-height:120px;"></textarea>
 </div>
 </div>
@@ -386,7 +387,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 <span class="frmcv-cert-badge" id="frmcvCertBadge" style="display:none;">Diisi</span>
 </div>
 <div class="frmcv-cert-body" id="frmcvCertBody">
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx6')" id="frmcvEx6Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx6"><div class="frmcv-desc-content" style="margin-top:8px;">Tuliskan pelatihan, kursus, atau sertifikasi yang pernah Anda ikuti. Format Penulisan:</div><div class="frmcv-desc-example"><strong>Contoh:</strong><br>Nama Pelatihan : Digital Marketing Fundamentals<br>Penyelenggara : Google (Coursera)<br>Tahun : 2022<br>Nomor Sertifikat (opsional) : ABC123XYZ<br><br>Nama Pelatihan : Pelatihan K3 Umum<br>Penyelenggara : Kemnaker RI<br>Tahun : 2023<br>Nomor Sertifikat (opsional) : -</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx6')" id="frmcvEx6Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx6"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>Nama Pelatihan : Digital Marketing Fundamentals<br>Penyelenggara : Google (Coursera)<br>Tahun : 2022<br>Nomor Sertifikat (opsional) : ABC123XYZ<br><br>Nama Pelatihan : Pelatihan K3 Umum<br>Penyelenggara : Kemnaker RI<br>Tahun : 2023<br>Nomor Sertifikat (opsional) : -</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvSertifikat" name="frmcv_sertifikat" placeholder="Tuliskan pelatihan / sertifikat Anda sesuai format..." style="min-height:120px;"></textarea>
 </div>
 </div>
@@ -398,7 +399,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 <span class="frmcv-cert-badge" id="frmcvInfoBadge" style="display:none;">Diisi</span>
 </div>
 <div class="frmcv-cert-body" id="frmcvInfoBody">
-<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx7')" id="frmcvEx7Btn">Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx7"><div class="frmcv-desc-content" style="margin-top:8px;">Tuliskan informasi lain yang ingin ditampilkan di CV dan belum tercakup di kolom sebelumnya.</div><div class="frmcv-desc-example"><strong>Contoh:</strong><br>• Memiliki kendaraan pribadi (SIM A &amp; C)<br>• Bersedia ditempatkan di seluruh wilayah Indonesia<br>• Aktif sebagai anggota organisasi profesi (PAFI, ISEI, dll)<br>• Referensi tersedia atas permintaan</div></div></div>
+<div class="frmcv-field-desc"><button type="button" class="frmcv-ex-btn" onclick="frmcvToggleEx('frmcvEx7')" id="frmcvEx7Btn">Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg></button><div class="frmcv-example-wrap" id="frmcvEx7"><div class="frmcv-desc-example"><strong>Contoh:</strong><br>• Memiliki kendaraan pribadi (SIM A &amp; C)<br>• Bersedia ditempatkan di seluruh wilayah Indonesia<br>• Aktif sebagai anggota organisasi profesi (PAFI, ISEI, dll)<br>• Referensi tersedia atas permintaan</div></div></div>
 <textarea class="frmcv-textarea" id="frmcvInfoTambahan" name="frmcv_info_tambahan" placeholder="Tuliskan informasi tambahan Anda..." style="min-height:120px;"></textarea>
 </div>
 </div>
@@ -460,6 +461,7 @@ var frmcvSubmitting=false;
 var frmcvDataToSend=null;
 var frmcvCertOn=false;
 var frmcvInfoOn=false;
+var frmcvPengalamanOn=false;
 var frmcvProducts={
 'ats-1':{name:'ATS 1',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/ats-1.webp'},
 'ats-2':{name:'ATS 2',image:'https://raw.githubusercontent.com/aldiiiwijaya/nebula-creative-cdn/main/template-cv/ats-2.webp'},
@@ -489,7 +491,6 @@ document.getElementById('frmcvThemeLight').addEventListener('click',function(){f
 document.getElementById('frmcvThemeDark').addEventListener('click',function(){frmcvApplyTheme('dark');});
 function frmcvIsMobile(){return /Android|webOS|iPhone|iPad|IEMobile|Opera Mini/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}
 function frmcvIsIOS(){return /iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}
-var frmcvPengalamanOn=false;
 window.frmcvTogglePengalaman=function(){
 frmcvPengalamanOn=!frmcvPengalamanOn;
 var toggle=document.getElementById('frmcvPengalamanToggle');
@@ -554,7 +555,7 @@ var open=wrap.classList.toggle('frmcv-ex-open');
 btn.classList.toggle('frmcv-ex-open',open);
 btn.innerHTML=open
 ?'Sembunyikan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg>'
-:'Lihat Panduan <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg>';
+:'Lihat Contoh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"></polyline></svg>';
 };
 window.frmcvSelectPkg=function(type){
 var radio=document.getElementById(type==='basic'?'frmcvBasic':'frmcvPremium');
